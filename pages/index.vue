@@ -5,7 +5,7 @@ function goToLogin() {
 </script>
 
 <template>
-  <div class="container">
+  <div class="container-index">
     <div class="content">
       <p class="welcome">Welcome To</p>
       <h1>
