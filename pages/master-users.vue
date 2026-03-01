@@ -49,7 +49,16 @@
 
   function openModal(mode = 'create', user = null) {
     modalMode.value = mode
-    selectedUser.value = user ? { ...user } : null
+    if (mode === 'edit' && user) {
+      selectedUser.value = {
+        id: user.id,
+        name: user.name,
+        email: user.email,
+        role: user.role_id // HANYA kirim role_id
+      }
+    } else {
+      selectedUser.value = null
+    }
     showModal.value = true
   }
 

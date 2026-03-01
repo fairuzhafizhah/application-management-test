@@ -25,11 +25,11 @@
           </div>
           <div class="form-group">
             <label>Role</label>
-            <select v-model="local.role" class="form-input">
+            <select v-model.number="local.role" class="form-input">
               <option
                 v-for="item in props.roles"
                 :key="item.id || item.role"
-                :value="item.role"
+                :value="item.id"
               >
                 {{ item.role.charAt(0).toUpperCase() + item.role.slice(1) }}
               </option>
@@ -41,7 +41,7 @@
         
         <div class="modal-actions">
           <button class="btn-update" @click.prevent="submit" :disabled="loading">
-            {{ loading ? 'Saving...' : (mode === 'edit' ? 'Update' : 'Update') }}
+            {{ loading ? 'Saving...' : (mode === 'edit' ? 'Update' : 'Submit') }}
           </button>
           <button class="btn-cancel" @click.prevent="$emit('cancel')" :disabled="loading">
             Cancel
@@ -65,22 +65,35 @@
     })
     const emit = defineEmits(['save', 'cancel'])
 
-    const local = ref({ name: '', email: '', password: '', role: 'user' })
+    const local = ref({
+      name: '',
+      email: '',
+      password: '',
+      role: null
+    })
     const loading = ref(false)
     const error = ref('')
 
     watch(
-    () => props.initialData,
-    (v) => {
+      () => props.initialData,
+      (v) => {
         if (props.mode === 'edit' && v) {
-        local.value = { ...v }
-        // do not copy password
-        delete local.value.password
+          local.value = {
+            id: v.id,
+            name: v.name,
+            email: v.email,
+            role: v.role
+          }
         } else {
-        local.value = { name: '', email: '', password: '', role: 'user' }
+          local.value = {
+            name: '',
+            email: '',
+            password: '',
+            role: null
+          }
         }
-    },
-    { immediate: true }
+      },
+      { immediate: true }
     )
 
     const submit = async () => {

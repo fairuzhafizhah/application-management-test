@@ -2,6 +2,7 @@ import bcrypt from 'bcrypt'
 import { supabase } from '../utils/supabase'
 
 export default defineEventHandler(async (event) => {
+  // console.log('USER CONTEXT:', event.context.user)
   // only admin allowed
   if (!event.context.user || event.context.user.role !== 'Admin') {
     throw createError({ statusCode: 403 })
@@ -16,17 +17,8 @@ export default defineEventHandler(async (event) => {
   const updates: any = {}
   if (name) updates.name = name
   if (email) updates.email = email
-  if (role && ['User','Admin','Manager'].includes(role)) {
-    // lookup id for provided role name
-    const { data: rrow, error: rerr } = await supabase
-      .from('roles')
-      .select('id')
-      .eq('role', role)
-      .single()
-    if (rerr || !rrow) {
-      throw createError({ statusCode: 400, statusMessage: 'Invalid role' })
-    }
-    updates.role = rrow.id
+  if (role) {
+    updates.role = role
   }
   if (password) {
     updates.password = await bcrypt.hash(password, 10)
