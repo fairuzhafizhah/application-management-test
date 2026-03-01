@@ -1,0 +1,45 @@
+import bcrypt from 'bcrypt'
+import { supabase } from '../utils/supabase'
+
+export default defineEventHandler(async (event) => {
+  // only admin allowed
+  if (!event.context.user || event.context.user.role !== 'admin') {
+    throw createError({ statusCode: 403 })
+  }
+
+  const body = await readBody(event)
+  const { id, name, email, role, password } = body
+  if (!id) {
+    throw createError({ statusCode: 400, statusMessage: 'Missing id' })
+  }
+
+  const updates: any = {}
+  if (name) updates.name = name
+  if (email) updates.email = email
+  if (role && ['user','admin','manager'].includes(role)) {
+    // lookup id for provided role name
+    const { data: rrow, error: rerr } = await supabase
+      .from('roles')
+      .select('id')
+      .eq('role', role)
+      .single()
+    if (rerr || !rrow) {
+      throw createError({ statusCode: 400, statusMessage: 'Invalid role' })
+    }
+    updates.role = rrow.id
+  }
+  if (password) {
+    updates.password = await bcrypt.hash(password, 10)
+  }
+
+  const { data, error } = await supabase
+    .from('users')
+    .update(updates)
+    .eq('id', id)
+
+  if (error) {
+    throw createError({ statusCode: 400, statusMessage: error.message })
+  }
+
+  return data
+})

@@ -1,0 +1,164 @@
+/* Global Font */
+* {
+  font-family: Arial, sans-serif;
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 50;
+}
+
+.user-modal {
+  background: #fff;
+  border-radius: 8px;
+  width: 1000px !important;
+  max-width: 95% !important;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  overflow: hidden;
+}
+
+.user-modal .modal-header {
+  padding: 28px 32px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.user-modal .modal-title {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 600;
+  color: #1a1f4d;
+}
+
+.user-modal .modal-close {
+  background: none;
+  border: none;
+  font-size: 28px;
+  color: #999;
+  cursor: pointer;
+  padding: 0;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.user-modal .modal-close:hover {
+  color: #333;
+}
+
+.user-modal .modal-divider {
+  height: 1px;
+  background: #e0e0e0;
+  margin: 16px 0;
+}
+
+.user-modal .modal-body {
+  padding: 0 32px;
+}
+
+.user-modal .modal-error {
+  margin: 12px 24px 0;
+  padding: 8px 12px;
+  background: #ffebee;
+  color: #c62828;
+  border-radius: 4px;
+  font-size: 13px;
+}
+
+.form-group {
+  margin-bottom: 16px;
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group label {
+  font-weight: 600;
+  margin-bottom: 6px;
+  font-size: 14px;
+  color: #333;
+}
+
+.form-input {
+  padding: 10px 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+  font-family: Arial, sans-serif;
+  transition: border-color 0.2s;
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.1);
+}
+
+.user-modal .modal-actions {
+  padding: 28px 32px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.btn-update {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 10px 24px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 500;
+  transition: background-color 0.2s;
+}
+
+.btn-update:hover:not(:disabled) {
+  background-color: #0056b3;
+}
+
+.btn-update:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.btn-cancel {
+  background-color: #6c757d;
+  color: #fff;
+  border: none;
+  padding: 10px 24px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 500;
+  transition: background-color 0.2s;
+}
+
+.btn-cancel:hover:not(:disabled) {
+  background-color: #5a6268;
+}
+
+.btn-cancel:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.2s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
