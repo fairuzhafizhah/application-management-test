@@ -10,5 +10,8 @@ export default defineNuxtConfig({
     // databaseUrl: process.env.DATABASE_URL,
     // authSecret: process.env.AUTH_SECRET
   },
+  nitro: {
+    preset: 'vercel'
+  },
   modules: ['@nuxt/ui']
 })
