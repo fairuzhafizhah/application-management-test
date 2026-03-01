@@ -3,7 +3,7 @@ import { supabase } from '../utils/supabase'
 
 export default defineEventHandler(async (event) => {
   // only admin allowed
-  if (!event.context.user || event.context.user.role !== 'admin') {
+  if (!event.context.user || event.context.user.role !== 'Admin') {
     throw createError({ statusCode: 403 })
   }
 
@@ -16,7 +16,7 @@ export default defineEventHandler(async (event) => {
   const updates: any = {}
   if (name) updates.name = name
   if (email) updates.email = email
-  if (role && ['user','admin','manager'].includes(role)) {
+  if (role && ['User','Admin','Manager'].includes(role)) {
     // lookup id for provided role name
     const { data: rrow, error: rerr } = await supabase
       .from('roles')

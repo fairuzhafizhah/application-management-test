@@ -2,7 +2,7 @@ import { supabase } from '../utils/supabase'
 
 export default defineEventHandler(async (event) => {
   // only admin
-  if (!event.context.user || event.context.user.role !== 'admin') {
+  if (!event.context.user || event.context.user.role !== 'Admin') {
     throw createError({ statusCode: 403 })
   }
 

@@ -3,7 +3,7 @@ import { supabase } from '../utils/supabase'
 
 export default defineEventHandler(async (event) => {
   // only authenticated admins and managers may create users
-  if (!event.context.user || !['admin','manager'].includes(event.context.user.role)) {
+  if (!event.context.user || !['Admin','Manager'].includes(event.context.user.role)) {
     throw createError({ statusCode: 403 })
   }
 
@@ -12,15 +12,15 @@ export default defineEventHandler(async (event) => {
   const hashed = await bcrypt.hash(body.password, 10)
 
   // determine role name based on creator privileges
-  const allowed = ['user','admin','manager']
-  let roleName = 'user'
-  if (event.context.user.role === 'admin') {
+  const allowed = ['User','Admin','Manager']
+  let roleName = 'User'
+  if (event.context.user.role === 'Admin') {
     if (body.role && allowed.includes(body.role)) {
       roleName = body.role
     }
   } else {
     // manager: always assign basic user role
-    roleName = 'user'
+    roleName = 'User'
   }
 
   // resolve role name to id in the roles table
