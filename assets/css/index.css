@@ -1,0 +1,130 @@
+.container {
+  position: relative;
+  min-height: 100vh;
+  background-color: #cbd5df;
+  display: flex;
+  align-items: center;
+  justify-content: center; /* center overall */
+  padding: 0 120px;
+  overflow: hidden;
+}
+
+.content {
+  max-width: 650px;
+  z-index: 2;
+}
+
+.welcome {
+  font-size: 22px;
+  margin-bottom: 16px;
+  color: #333;
+  letter-spacing: 1px;
+}
+
+h1 {
+  font-size: 72px;
+  font-weight: 800;
+  line-height: 1.1;
+  margin: 0;
+  color: #111;
+}
+
+.created {
+  margin-top: 24px;
+  font-size: 18px;
+  color: #444;
+}
+
+.signin-btn {
+  position: absolute;
+  right: 140px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
+  background-color: #16124c;
+  color: white;
+  border: none;
+  padding: 14px 42px;
+  border-radius: 40px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.signin-btn:hover {
+  transform: translateY(-50%) scale(1.05);
+  background-color: #0e0a3a;
+}
+
+/* Decorative Circles */
+
+.circle {
+  position: absolute;
+  border-radius: 50%;
+  background-color: #0c0c88;
+  z-index: 1;
+}
+
+.top-left {
+  width: 350px;
+  height: 350px;
+  top: -120px;
+  left: -120px;
+}
+
+.bottom-right {
+  width: 420px;
+  height: 420px;
+  bottom: -180px;
+  right: -180px;
+}
+
+/* Responsive */
+
+@media (max-width: 1024px) {
+  .signin-btn {
+    position: static;
+    transform: none;
+    margin-top: 40px;
+  }
+
+  .container {
+    flex-direction: column;
+    text-align: center;
+    padding: 40px;
+  }
+
+  h1 {
+    font-size: 48px;
+  }
+}
+
+/* Dotted Lines */
+
+.dotted {
+  position: absolute;
+  height: 0;
+  border-top: 3px dotted #333;
+  opacity: 0.5;
+  z-index: 0;
+}
+
+.dotted-top {
+  width: 40%;
+  top: 80px;
+  right: 120px;
+}
+
+.dotted-bottom {
+  width: 30%;
+  bottom: 60px;
+  left: 120px;
+}
+
+.container {
+  position: relative;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #cbd5df 0%, #e2e8f0 100%);
+}
